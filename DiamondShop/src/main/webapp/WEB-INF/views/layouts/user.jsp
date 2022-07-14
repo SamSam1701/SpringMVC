@@ -1,81 +1,115 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%> 
-	
-<%@taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator"%>
+	pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
+<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
+	prefix="decorator"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>CSS Template</title>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-* {
-  box-sizing: border-box;
-}
+<title><decorator:title default="Master-layout"></decorator:title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Bootstrap styles -->
+<link href="<c:url value="/assets/user/css/bootstrap.css"></c:url>"
+	rel="stylesheet" />
+<!-- Customize styles -->
+<link href='<c:url value = "/assets/user/style.css"></c:url>'
+	rel="stylesheet" />
+<!-- font awesome styles -->
+<link
+	href='<c:url value = "/assets/user/font-awesome/css/font-awesome.css"></c:url>'
+	rel="stylesheet">
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-/* Style the header */
-header {
-  background-color: #666;
-  padding: 30px;
-  text-align: center;
-  font-size: 35px;
-  color: white;
-}
-
-/* Create two columns/boxes that floats next to each other */
-nav {
-  float: left;
-  width: 30%;
-  height: 300px; /* only for demonstration, should be removed */
-  background: #ccc;
-  padding: 20px;
-}
-
-/* Style the list inside the menu */
-nav ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-article {
-  float: left;
-  padding: 20px;
-  width: 70%;
-  background-color: #f1f1f1;
-  height: 300px; /* only for demonstration, should be removed */
-}
-
-/* Clear floats after the columns */
-section::after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Style the footer */
-footer {
-  background-color: #777;
-  padding: 10px;
-  text-align: center;
-  color: white;
-}
-
-/* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
-  nav, article {
-    width: 100%;
-    height: auto;
-  }
-}
-</style>
+<!-- Favicons -->
+<link rel="shortcut icon"
+	href='<c:url value="/assets/user/ico/favicon.ico"></c:url>'>
+<decorator:head></decorator:head>
 </head>
 <body>
-	<%@include file="/WEB-INF/views/layouts/user/header.jsp" %>
-	<decorator:body/>
-	<%@include file="/WEB-INF/views/layouts/user/footer.jsp" %>
+	<!-- 
+	Upper Header Section 
+-->
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="topNav">
+			<div class="container">
+				<div class="alignR">
+					<div class="pull-left socialNw">
+						<a href="#"><span class="icon-twitter"></span></a> <a href="#"><span
+							class="icon-facebook"></span></a> <a href="#"><span
+							class="icon-youtube"></span></a> <a href="#"><span
+							class="icon-tumblr"></span></a>
+					</div>
+					<a class="active" href="index.html"> <span class="icon-home"></span>
+						Trang chủ
+					</a> 
+					<c:if test="${not empty LoginInfo }">
+					<a href="#"> <span class="icon-user"></span> ${LoginInfo.display_name }
+					</a> 
+					<a href="<c:url value = "/dang-xuat"/>"><span class="icon-edit"></span>
+						Đăng xuất </a> 
+						</c:if>
+						<c:if test="${empty LoginInfo }">
+						<a href="<c:url value = "/dang-ky"/>"><span class="icon-edit"></span>Đăng ký </a>
+						</c:if>
+						<a href="contact.html"><span class="icon-envelope"></span>
+						Liên hệ</a> 
+						<a href="<c:url value="/gio-hang"/>"><span
+						class="icon-shopping-cart"></span> ${TotalQuantyCart } Sản phẩm -
+						<span class="badge badge-warning"><fmt:formatNumber
+								type="number" groupingUsed="true" value="${TotalPriceCart }" />₫</span></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--
+Lower Header Section 
+-->
+	<div class="container">
+		<div id="gototop"></div>
+		<%@include file="/WEB-INF/views/layouts/user/header.jsp"%>
+		<decorator:body></decorator:body>
+		<!-- 
+Clients 
+-->
+
+		<%@include file="/WEB-INF/views/layouts/user/footer.jsp"%>
+
+		<!-- /container -->
+	</div>
+	<div class="copyright">
+		<div class="container">
+			<p class="pull-right">
+				<a href="#"><img
+					src="<c:url value = "/assets/user/img/maestro.png"/>" alt="payment"></a>
+				<a href="#"><img
+					src="<c:url value = "/assets/user/img/mc.png"/>" alt="payment"></a>
+				<a href="#"><img
+					src="<c:url value = "/assets/user/img/pp.png"/>" alt="payment"></a>
+				<a href="#"><img
+					src="<c:url value = "/assets/user/img/visa.png"/>" alt="payment"></a>
+				<a href="#"><img
+					src="<c:url value = "/assets/user/img/disc.png"/>" alt="payment"></a>
+			</p>
+			<span>Copyright &copy; 2013<br> bootstrap ecommerce
+				shopping template
+			</span>
+		</div>
+	</div>
+	<a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
+	<!-- Placed at the end of the document so the pages load faster -->
+	<script src='<c:url value ="/assets/user/js/jquery.js"></c:url>'></script>
+	<script src='<c:url value ="/assets/user/js/bootstrap.min.js"></c:url>'></script>
+	<script
+		src='<c:url value ="/assets/user/js/jquery.easing-1.3.min.js"></c:url>'></script>
+	<script
+		src='<c:url value = "/assets/user/js/jquery.scrollTo-1.4.3.1-min.js"></c:url>'></script>
+	<script src='<c:url value ="/assets/user/js/shop.js"></c:url>'></script>
+
+	<decorator:getProperty property="page.script"></decorator:getProperty>
 </body>
 </html>

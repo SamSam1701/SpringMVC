@@ -44,16 +44,16 @@
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
-			<item value="SpringMVC"/>
 			<item value="com.diamond-shop"/>
+			<item value="SpringMVC"/>
 			<item value="com.diamond-shopp"/>
 			<item value="com.spring-mvc"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
-			<item value="demo"/>
 			<item value="DiamondShop"/>
+			<item value="demo"/>
 			<item value="diamondShop"/>
 			<item value="SpringMVC"/>
 		</list>
